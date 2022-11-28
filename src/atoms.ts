@@ -17,7 +17,7 @@ const initNewRecord = {
 } as Record
 
 const initRecordListFilter = {
-  dateBegin: dayjs().format('YYYY-MM-DD'),
+  dateBegin: dayjs().subtract(30, 'day').format('YYYY-MM-DD'),
   dateEnd: dayjs().format('YYYY-MM-DD'),
 } as RecordListFilter
 
