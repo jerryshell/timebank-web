@@ -7,6 +7,7 @@ import { useRecoilState } from 'recoil';
 import { atoms } from './atoms';
 import RecordCreatePlane from './components/RecordCreatePlane';
 import RecordListPlane from './components/RecordListPlane';
+import RecordChart from './components/RecordChart';
 
 const App = () => {
   const [recordListFilter, setRecordListFilter] = useRecoilState(atoms.recordListFilter)
@@ -38,6 +39,7 @@ const App = () => {
     <>
       <Header/>
       <RecordCreatePlane fetchRecordList={fetchRecordList}/>
+      <RecordChart/>
       <RecordListPlane/>
       <Footer/>
     </>
