@@ -4,6 +4,7 @@ export const Header = () => {
   return (
     <h1>
       <img
+        width='34px'
         alt='logo'
         src={logo}
       />
