@@ -174,7 +174,7 @@ const App = () => {
           </div>
           <button onClick={handleRecordCreateBtnClick}>创建</button>
         </div>
-        <p>若旧记录与新记录重叠，则旧记录将会被新纪录覆盖</p>
+        <p>若旧记录与新记录重叠，则旧记录将会被新记录覆盖</p>
       </details>
 
       <details open>
