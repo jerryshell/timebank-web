@@ -1,6 +1,7 @@
 import dayjs from 'dayjs';
 import { useRecoilState } from 'recoil';
 import { atoms } from '../atoms';
+import LoadingSvg from './LoadingSvg';
 
 const timeIndexToTimeStr = (timeIndex: number) => {
   return `${(~~(timeIndex / 2)).toString().padStart(2, '0')}:${timeIndex % 2 === 0 ? '00' : '30'}`
@@ -29,6 +30,7 @@ const recordTypeEmojiPrefix = (recordType: string) => {
 const RecordListPlane = () => {
   const [recordListFilter, setRecordListFilter] = useRecoilState(atoms.recordListFilter)
   const [recordList, setRecordList] = useRecoilState(atoms.recordList)
+  const [recordListLoading, setRecordListLoading] = useRecoilState(atoms.recordListLoading)
 
   return (
     <details open>
@@ -134,6 +136,7 @@ const RecordListPlane = () => {
         ))}
         </tbody>
       </table>
+      {recordListLoading ? <div style={{ textAlign: 'center' }}><LoadingSvg/></div> : ''}
     </details>
   )
 }

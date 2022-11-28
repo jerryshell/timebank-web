@@ -34,4 +34,8 @@ export const atoms = {
     key: 'recordList',
     default: [] as Record[],
   }),
+  recordListLoading: atom({
+    key: 'recordListLoading',
+    default: false,
+  })
 }

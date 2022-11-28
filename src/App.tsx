@@ -11,8 +11,10 @@ import RecordListPlane from './components/RecordListPlane';
 const App = () => {
   const [recordListFilter, setRecordListFilter] = useRecoilState(atoms.recordListFilter)
   const [recordList, setRecordList] = useRecoilState(atoms.recordList)
+  const [recordListLoading, setRecordListLoading] = useRecoilState(atoms.recordListLoading)
 
   const fetchRecordList = () => {
+    setRecordListLoading(true)
     recordApi.search(recordListFilter)
       .then(response => {
         const recordList = response.data
@@ -22,6 +24,9 @@ const App = () => {
       .catch(e => {
         console.error(e)
         alert(e.response.data.message)
+      })
+      .finally(() => {
+        setRecordListLoading(false)
       })
   }
 
