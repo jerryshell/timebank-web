@@ -1,6 +1,8 @@
 import { useRecoilState } from 'recoil';
 import { atoms } from '../atoms';
 import recordApi from '../api/recordApi';
+import { useState } from 'react';
+import LoadingButton from './LoadingButton';
 
 let timeClipList = [] as string[]
 for (let i = 0; i <= 24; i++) {
@@ -13,6 +15,7 @@ console.log('timeClipList', timeClipList)
 
 const RecordCreatePlane = ({ fetchRecordList }: { fetchRecordList: Function }) => {
   const [newRecord, setNewRecord] = useRecoilState(atoms.newRecord)
+  const [loading, setLoading] = useState(false)
 
   const handleRecordCreateBtnClick = () => {
     console.log('newRecord', newRecord)
@@ -20,6 +23,7 @@ const RecordCreatePlane = ({ fetchRecordList }: { fetchRecordList: Function }) =
       alert('创建失败！结束时间不能小于开始时间')
       return
     }
+    setLoading(true)
     recordApi.create(newRecord)
       .then(response => {
         console.log('record create response', response)
@@ -28,6 +32,9 @@ const RecordCreatePlane = ({ fetchRecordList }: { fetchRecordList: Function }) =
       .catch(e => {
         console.error(e)
         alert(e.response.data.message)
+      })
+      .finally(() => {
+        setLoading(false)
       })
   }
 
@@ -138,7 +145,7 @@ const RecordCreatePlane = ({ fetchRecordList }: { fetchRecordList: Function }) =
             }}
           />
         </div>
-        <button onClick={handleRecordCreateBtnClick}>创建</button>
+        {loading ? <LoadingButton/> : <button onClick={handleRecordCreateBtnClick}>创建</button>}
       </div>
       <p>若旧记录与新记录重叠，则旧记录将会被新记录覆盖</p>
     </details>
