@@ -6,6 +6,26 @@ const timeIndexToTimeStr = (timeIndex: number) => {
   return `${(~~(timeIndex / 2)).toString().padStart(2, '0')}:${timeIndex % 2 === 0 ? '00' : '30'}`
 }
 
+const recordTypeEmojiPrefix = (recordType: string) => {
+  switch (recordType) {
+    case '休息': {
+      return '🛏️'
+    }
+    case '充电': {
+      return '🔋'
+    }
+    case '工作': {
+      return '🚀'
+    }
+    case '摸鱼': {
+      return '🐟'
+    }
+    default: {
+      return '❓'
+    }
+  }
+}
+
 const RecordListPlane = () => {
   const [recordListFilter, setRecordListFilter] = useRecoilState(atoms.recordListFilter)
   const [recordList, setRecordList] = useRecoilState(atoms.recordList)
@@ -108,7 +128,7 @@ const RecordListPlane = () => {
             <td>{record.date}</td>
             <td>{timeIndexToTimeStr(record.timeIndexBegin)}</td>
             <td>{timeIndexToTimeStr(record.timeIndexEnd)}</td>
-            <td>{record.type}</td>
+            <td>{recordTypeEmojiPrefix(record.type)} {record.type}</td>
             <td>{record.remark}</td>
           </tr>
         ))}
