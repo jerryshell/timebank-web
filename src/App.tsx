@@ -21,7 +21,7 @@ const nowTimeIndex = () => {
 }
 
 const timeIndexToTimeStr = (timeIndex: number) => {
-  return `${~~(timeIndex / 2)}:${timeIndex % 2 === 0 ? '00' : '30'}`
+  return `${(~~(timeIndex / 2)).toString().padStart(2, '0')}:${timeIndex % 2 === 0 ? '00' : '30'}`
 }
 
 const App = () => {
