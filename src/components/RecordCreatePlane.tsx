@@ -27,13 +27,24 @@ const RecordCreatePlane = ({ fetchRecordList }: { fetchRecordList: Function }) =
       })
       .catch(e => {
         console.error(e)
-        alert(e.toString())
+        alert(e.response.data.message)
       })
   }
 
   return (
     <details open>
       <summary>创建记录</summary>
+      <div>
+        <label htmlFor='adminTokenInput'>Admin 令牌（如果你没有 Admin 令牌，则没有创建记录权限）</label>
+        <input
+          id='adminTokenInput'
+          type='text'
+          defaultValue={localStorage.getItem('adminToken') || ''}
+          onChange={e => {
+            localStorage.setItem('adminToken', e.target.value)
+          }}
+        />
+      </div>
       <div style={{ display: 'flex' }}>
         <div>
           <label htmlFor='newReportDateInput'>日期</label>

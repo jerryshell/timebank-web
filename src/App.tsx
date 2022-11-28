@@ -21,7 +21,7 @@ const App = () => {
       })
       .catch(e => {
         console.error(e)
-        alert(e.toString())
+        alert(e.response.data.message)
       })
   }
 
