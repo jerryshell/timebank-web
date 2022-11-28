@@ -12,7 +12,7 @@ const initNewRecord = {
   date: dayjs().format('YYYY-MM-DD'),
   timeIndexBegin: Math.max(0, nowTimeIndex() - 1),
   timeIndexEnd: nowTimeIndex(),
-  type: '休息',
+  type: '工作',
   remark: '',
 } as Record
 

@@ -118,10 +118,10 @@ const RecordCreatePlane = ({ fetchRecordList }: { fetchRecordList: Function }) =
               })
             }}
           >
-            <option value='休息'>休息</option>
-            <option value='充电'>充电</option>
             <option value='工作'>工作</option>
+            <option value='充电'>充电</option>
             <option value='摸鱼'>摸鱼</option>
+            <option value='休息'>休息</option>
           </select>
         </div>
         <div>
