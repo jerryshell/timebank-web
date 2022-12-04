@@ -1,7 +1,7 @@
 import { atom } from 'recoil'
 import Record from './interfaces/Record';
 import dayjs from 'dayjs';
-import RecordListFilter from './interfaces/RecordListFilter';
+import RecordListSearchForm from './interfaces/RecordListSearchForm';
 
 const nowTimeIndex = () => {
   const now = dayjs()
@@ -16,19 +16,19 @@ const initNewRecord = {
   remark: '',
 } as Record
 
-const initRecordListFilter = {
+const initRecordListSearchForm = {
   dateBegin: dayjs().subtract(30, 'day').format('YYYY-MM-DD'),
   dateEnd: dayjs().format('YYYY-MM-DD'),
-} as RecordListFilter
+} as RecordListSearchForm
 
 export const atoms = {
   newRecord: atom({
     key: 'newRecord',
     default: initNewRecord,
   }),
-  recordListFilter: atom({
-    key: 'recordListFilter',
-    default: initRecordListFilter
+  recordListSearchForm: atom({
+    key: 'recordListSearchForm',
+    default: initRecordListSearchForm
   }),
   recordList: atom({
     key: 'recordList',

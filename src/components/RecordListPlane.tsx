@@ -28,7 +28,7 @@ const recordTypeEmojiPrefix = (recordType: string) => {
 }
 
 const RecordListPlane = () => {
-  const [recordListFilter, setRecordListFilter] = useRecoilState(atoms.recordListFilter)
+  const [recordListSearchForm, setRecordListSearchForm] = useRecoilState(atoms.recordListSearchForm)
   const [recordList, setRecordList] = useRecoilState(atoms.recordList)
   const [recordListLoading, setRecordListLoading] = useRecoilState(atoms.recordListLoading)
 
@@ -46,10 +46,10 @@ const RecordListPlane = () => {
             <input
               id="recordListFilterDateBeginInput"
               type='date'
-              value={recordListFilter.dateBegin}
+              value={recordListSearchForm.dateBegin}
               onChange={e => {
-                setRecordListFilter({
-                  ...recordListFilter,
+                setRecordListSearchForm({
+                  ...recordListSearchForm,
                   dateBegin: e.target.value,
                 })
               }}
@@ -62,10 +62,10 @@ const RecordListPlane = () => {
             <input
               id="recordListFilterDateEndInput"
               type='date'
-              value={recordListFilter.dateEnd}
+              value={recordListSearchForm.dateEnd}
               onChange={e => {
-                setRecordListFilter({
-                  ...recordListFilter,
+                setRecordListSearchForm({
+                  ...recordListSearchForm,
                   dateEnd: e.target.value,
                 })
               }}
@@ -74,7 +74,7 @@ const RecordListPlane = () => {
           <button
             onClick={() => {
               const now = dayjs()
-              setRecordListFilter({
+              setRecordListSearchForm({
                 dateBegin: now.format('YYYY-MM-DD'),
                 dateEnd: now.format('YYYY-MM-DD'),
               })
@@ -84,7 +84,7 @@ const RecordListPlane = () => {
           <button
             onClick={() => {
               const now = dayjs()
-              setRecordListFilter({
+              setRecordListSearchForm({
                 dateBegin: now.day(0).format('YYYY-MM-DD'),
                 dateEnd: now.format('YYYY-MM-DD'),
               })
@@ -94,7 +94,7 @@ const RecordListPlane = () => {
           <button
             onClick={() => {
               const now = dayjs()
-              setRecordListFilter({
+              setRecordListSearchForm({
                 dateBegin: now.date(1).format('YYYY-MM-DD'),
                 dateEnd: now.format('YYYY-MM-DD'),
               })
@@ -104,7 +104,7 @@ const RecordListPlane = () => {
           <button
             onClick={() => {
               const now = dayjs()
-              setRecordListFilter({
+              setRecordListSearchForm({
                 dateBegin: now.subtract(30, 'day').format('YYYY-MM-DD'),
                 dateEnd: now.format('YYYY-MM-DD'),
               })

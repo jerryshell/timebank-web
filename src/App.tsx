@@ -10,7 +10,7 @@ import RecordListPlane from './components/RecordListPlane';
 import RecordChart from './components/RecordChart';
 
 const App = () => {
-  const [recordListFilter, setRecordListFilter] = useRecoilState(atoms.recordListFilter)
+  const [recordListFilter, setRecordListFilter] = useRecoilState(atoms.recordListSearchForm)
   const [recordList, setRecordList] = useRecoilState(atoms.recordList)
   const [recordListLoading, setRecordListLoading] = useRecoilState(atoms.recordListLoading)
 
