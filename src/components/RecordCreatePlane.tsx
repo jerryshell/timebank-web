@@ -45,7 +45,7 @@ const RecordCreatePlane = ({ fetchRecordList }: { fetchRecordList: Function }) =
         <label htmlFor='adminTokenInput'>Admin 令牌（如果你没有 Admin 令牌，则没有创建记录权限）</label>
         <input
           id='adminTokenInput'
-          type='text'
+          type='password'
           defaultValue={localStorage.getItem('adminToken') || ''}
           onChange={e => {
             localStorage.setItem('adminToken', e.target.value)
