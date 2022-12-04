@@ -2,6 +2,7 @@ import dayjs from 'dayjs';
 import { useRecoilState } from 'recoil';
 import { atoms } from '../atoms';
 import LoadingSvg from './LoadingSvg';
+import { useMemo, useState } from 'react';
 
 const timeIndexToTimeStr = (timeIndex: number) => {
   return `${(~~(timeIndex / 2)).toString().padStart(2, '0')}:${timeIndex % 2 === 0 ? '00' : '30'}`
@@ -31,20 +32,28 @@ const RecordListPlane = () => {
   const [recordListSearchForm, setRecordListSearchForm] = useRecoilState(atoms.recordListSearchForm)
   const [recordList, setRecordList] = useRecoilState(atoms.recordList)
   const [recordListLoading, setRecordListLoading] = useRecoilState(atoms.recordListLoading)
+  const [recordKeyword, setRecordKeyword] = useState('')
+  const recordShowList = useMemo(() => {
+    return recordList.filter(item => {
+      return item.date.toLowerCase().includes(recordKeyword) ||
+        item.type.toLowerCase().includes(recordKeyword) ||
+        item.remark.toLowerCase().includes(recordKeyword)
+    })
+  }, [recordList, recordKeyword])
 
   return (
     <details open>
-      <summary>记录列表</summary>
+      <summary>记录列表 | 数量：{recordShowList.length}</summary>
 
       <fieldset>
         <legend>日期范围筛选</legend>
         <div style={{ display: 'flex' }}>
           <div>
-            <label htmlFor='recordListFilterDateBeginInput'>
+            <label htmlFor='recordListSearchFormDateBeginInput'>
               开始日期
             </label>
             <input
-              id="recordListFilterDateBeginInput"
+              id="recordListSearchFormDateBeginInput"
               type='date'
               value={recordListSearchForm.dateBegin}
               onChange={e => {
@@ -56,11 +65,11 @@ const RecordListPlane = () => {
             />
           </div>
           <div>
-            <label htmlFor='recordListFilterDateEndInput'>
+            <label htmlFor='recordListSearchFormDateEndInput'>
               结束日期
             </label>
             <input
-              id="recordListFilterDateEndInput"
+              id="recordListSearchFormDateEndInput"
               type='date'
               value={recordListSearchForm.dateEnd}
               onChange={e => {
@@ -114,6 +123,19 @@ const RecordListPlane = () => {
         </div>
       </fieldset>
 
+      <fieldset>
+        <legend>关键字筛选</legend>
+        <div style={{ display: 'flex' }}>
+          <input
+            type='text'
+            placeholder='关键字模糊搜索'
+            value={recordKeyword}
+            onChange={e => setRecordKeyword(e.target.value)}
+          />
+          <button onClick={() => setRecordKeyword('')}>重置</button>
+        </div>
+      </fieldset>
+
       <table>
         <thead>
         <tr>
@@ -125,7 +147,7 @@ const RecordListPlane = () => {
         </tr>
         </thead>
         <tbody>
-        {recordList.map(record => (
+        {recordShowList.map(record => (
           <tr key={`${record.date}-${record.timeIndexBegin}-${record.timeIndexEnd}`}>
             <td>{record.date}</td>
             <td>{timeIndexToTimeStr(record.timeIndexBegin)}</td>
