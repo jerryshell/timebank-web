@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import healthApi from "../api/healthApi";
+import { useEffect, useState } from 'react'
+import healthApi from '../api/healthApi'
 
 const ServerStatusCheck = () => {
   const [serverStatus, setServerStatus] = useState('👀检查中')

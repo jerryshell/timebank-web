@@ -1,6 +1,6 @@
 import './App.css'
-import { useEffect } from "react";
-import recordApi from "./api/recordApi";
+import { useEffect } from 'react'
+import recordApi from './api/recordApi'
 import { Header } from './components/Header'
 import Footer from './components/Footer'
 import { useRecoilState } from 'recoil'

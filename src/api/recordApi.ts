@@ -1,5 +1,5 @@
 import api from './api'
-import Record from "../interfaces/Record";
+import Record from '../interfaces/Record'
 
 const recordApi = {
   list: () => {
