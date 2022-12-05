@@ -45,7 +45,12 @@ const recordChart = () => {
               type="number"
               domain={['dataMin', 'dataMax']}
             />
-            <Tooltip contentStyle={{ backgroundColor: '#202b38', borderColor: '#202b38' }}/>
+            <Tooltip
+              contentStyle={{
+                backgroundColor: '#202b38',
+                borderColor: '#202b38'
+              }}
+            />
             <Area
               type="monotone"
               dataKey="workCount"

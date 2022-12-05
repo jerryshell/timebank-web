@@ -47,14 +47,19 @@ const RecordListPlane = () => {
 
       <fieldset>
         <legend>日期范围筛选</legend>
-        <div style={{ display: 'flex' }}>
+        <div
+          style={{
+            display: 'flex',
+            flexWrap: 'wrap'
+          }}
+        >
           <div>
-            <label htmlFor='recordListSearchFormDateBeginInput'>
+            <label htmlFor="recordListSearchFormDateBeginInput">
               开始日期
             </label>
             <input
               id="recordListSearchFormDateBeginInput"
-              type='date'
+              type="date"
               value={recordListSearchForm.dateBegin}
               onChange={e => {
                 setRecordListSearchForm({
@@ -65,12 +70,12 @@ const RecordListPlane = () => {
             />
           </div>
           <div>
-            <label htmlFor='recordListSearchFormDateEndInput'>
+            <label htmlFor="recordListSearchFormDateEndInput">
               结束日期
             </label>
             <input
               id="recordListSearchFormDateEndInput"
-              type='date'
+              type="date"
               value={recordListSearchForm.dateEnd}
               onChange={e => {
                 setRecordListSearchForm({
@@ -125,10 +130,15 @@ const RecordListPlane = () => {
 
       <fieldset>
         <legend>关键字筛选</legend>
-        <div style={{ display: 'flex' }}>
+        <div
+          style={{
+            display: 'flex',
+            flexWrap: 'wrap'
+          }}
+        >
           <input
-            type='text'
-            placeholder='关键字模糊搜索'
+            type="text"
+            placeholder="关键字模糊搜索"
             value={recordKeyword}
             onChange={e => setRecordKeyword(e.target.value)}
           />

@@ -42,22 +42,27 @@ const RecordCreatePlane = ({ fetchRecordList }: { fetchRecordList: Function }) =
     <details open>
       <summary>创建记录</summary>
       <div>
-        <label htmlFor='adminTokenInput'>Admin 令牌（如果你没有 Admin 令牌，则没有创建记录权限）</label>
+        <label htmlFor="adminTokenInput">Admin 令牌（如果你没有 Admin 令牌，则没有创建记录权限）</label>
         <input
-          id='adminTokenInput'
-          type='password'
+          id="adminTokenInput"
+          type="password"
           defaultValue={localStorage.getItem('adminToken') || ''}
           onChange={e => {
             localStorage.setItem('adminToken', e.target.value)
           }}
         />
       </div>
-      <div style={{ display: 'flex' }}>
+      <div
+        style={{
+          display: 'flex',
+          flexWrap: 'wrap'
+        }}
+      >
         <div>
-          <label htmlFor='newReportDateInput'>日期</label>
+          <label htmlFor="newReportDateInput">日期</label>
           <input
-            id='newReportDateInput'
-            type='date'
+            id="newReportDateInput"
+            type="date"
             value={newRecord.date}
             onChange={e => {
               setNewRecord({
@@ -68,9 +73,9 @@ const RecordCreatePlane = ({ fetchRecordList }: { fetchRecordList: Function }) =
           />
         </div>
         <div>
-          <label htmlFor='newReportTimeIndexBeginSelect'>开始时间</label>
+          <label htmlFor="newReportTimeIndexBeginSelect">开始时间</label>
           <select
-            id='newReportTimeIndexBeginSelect'
+            id="newReportTimeIndexBeginSelect"
             value={newRecord.timeIndexBegin}
             onChange={e => {
               const timeIndexBegin = parseInt(e.target.value)
@@ -91,9 +96,9 @@ const RecordCreatePlane = ({ fetchRecordList }: { fetchRecordList: Function }) =
           </select>
         </div>
         <div>
-          <label htmlFor='newReportTimeIndexEndSelect'>结束时间</label>
+          <label htmlFor="newReportTimeIndexEndSelect">结束时间</label>
           <select
-            id='newReportTimeIndexEndSelect'
+            id="newReportTimeIndexEndSelect"
             value={newRecord.timeIndexEnd}
             onChange={e => {
               const timeIndexEnd = parseInt(e.target.value)
@@ -114,9 +119,9 @@ const RecordCreatePlane = ({ fetchRecordList }: { fetchRecordList: Function }) =
           </select>
         </div>
         <div>
-          <label htmlFor='newReportTypeSelect'>类型</label>
+          <label htmlFor="newReportTypeSelect">类型</label>
           <select
-            id='newReportTypeSelect'
+            id="newReportTypeSelect"
             value={newRecord.type}
             onChange={e => {
               setNewRecord({
@@ -125,17 +130,17 @@ const RecordCreatePlane = ({ fetchRecordList }: { fetchRecordList: Function }) =
               })
             }}
           >
-            <option value='工作'>工作</option>
-            <option value='充电'>充电</option>
-            <option value='摸鱼'>摸鱼</option>
-            <option value='休息'>休息</option>
+            <option value="工作">工作</option>
+            <option value="充电">充电</option>
+            <option value="摸鱼">摸鱼</option>
+            <option value="休息">休息</option>
           </select>
         </div>
         <div>
-          <label htmlFor='newReportRemarkInput'>备注（可选）</label>
+          <label htmlFor="newReportRemarkInput">备注（可选）</label>
           <input
-            id='newReportRemarkInput'
-            type='text'
+            id="newReportRemarkInput"
+            type="text"
             value={newRecord.remark}
             onChange={e => {
               setNewRecord({
