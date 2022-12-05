@@ -1,7 +1,7 @@
 import { atom } from 'recoil'
-import Record from './interfaces/Record';
-import dayjs from 'dayjs';
-import RecordListSearchForm from './interfaces/RecordListSearchForm';
+import Record from './interfaces/Record'
+import dayjs from 'dayjs'
+import RecordListSearchForm from './interfaces/RecordListSearchForm'
 
 const nowTimeIndex = () => {
   const now = dayjs()

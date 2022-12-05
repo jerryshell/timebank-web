@@ -17,7 +17,7 @@ const ServerStatusCheck = () => {
   }, [])
 
   return (
-    <p>服务器状态：{serverStatus}</p>
+    <span>服务器状态：{serverStatus}</span>
   )
 }
 

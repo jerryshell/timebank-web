@@ -1,8 +1,8 @@
-import { useRecoilState } from 'recoil';
-import { atoms } from '../atoms';
-import recordApi from '../api/recordApi';
-import { useState } from 'react';
-import LoadingButton from './LoadingButton';
+import { useRecoilState } from 'recoil'
+import { atoms } from '../atoms'
+import recordApi from '../api/recordApi'
+import { useState } from 'react'
+import LoadingButton from './LoadingButton'
 
 let timeClipList = [] as string[]
 for (let i = 0; i <= 24; i++) {

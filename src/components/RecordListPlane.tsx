@@ -1,8 +1,8 @@
-import dayjs from 'dayjs';
-import { useRecoilState } from 'recoil';
-import { atoms } from '../atoms';
-import LoadingSvg from './LoadingSvg';
-import { useMemo, useState } from 'react';
+import dayjs from 'dayjs'
+import { useRecoilState } from 'recoil'
+import { atoms } from '../atoms'
+import LoadingSvg from './LoadingSvg'
+import { useMemo, useState } from 'react'
 
 const timeIndexToTimeStr = (timeIndex: number) => {
   return `${(~~(timeIndex / 2)).toString().padStart(2, '0')}:${timeIndex % 2 === 0 ? '00' : '30'}`

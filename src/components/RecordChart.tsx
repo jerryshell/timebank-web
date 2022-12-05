@@ -1,7 +1,7 @@
-import { Area, AreaChart, Tooltip, XAxis, YAxis } from 'recharts';
-import { useRecoilState } from 'recoil';
-import { atoms } from '../atoms';
-import { useMemo } from 'react';
+import { Area, AreaChart, Tooltip, XAxis, YAxis } from 'recharts'
+import { useRecoilState } from 'recoil'
+import { atoms } from '../atoms'
+import { useMemo } from 'react'
 
 const recordChart = () => {
   const [recordList, setRecordList] = useRecoilState(atoms.recordList)

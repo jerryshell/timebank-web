@@ -1,4 +1,4 @@
-import LoadingSvg from './LoadingSvg';
+import LoadingSvg from './LoadingSvg'
 
 const LoadingButton = () => {
   return (
