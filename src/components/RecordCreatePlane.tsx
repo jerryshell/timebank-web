@@ -4,13 +4,9 @@ import recordApi from '../api/recordApi'
 import {useState} from 'react'
 import LoadingButton from './LoadingButton'
 
-let timeClipList = [] as string[]
-for (let i = 0; i <= 24; i++) {
-    timeClipList.push(`${i.toString().padStart(2, '0')}:00`)
-    if (i !== 24) {
-        timeClipList.push(`${i.toString().padStart(2, '0')}:30`)
-    }
-}
+const timeClipList = [...Array(49).keys()].map(i => {
+    return `${~~(i / 2).toString().padStart(2, '0')}:${i % 2 == 0 ? '00' : '30'}`
+})
 console.log('timeClipList', timeClipList)
 
 const RecordCreatePlane = ({fetchRecordList}: { fetchRecordList: Function }) => {
