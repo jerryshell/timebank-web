@@ -34,10 +34,14 @@ const RecordListPlane = () => {
     const [recordListLoading, setRecordListLoading] = useRecoilState(atoms.recordListLoading)
     const [recordKeyword, setRecordKeyword] = useState('')
     const recordShowList = useMemo(() => {
+        const recordKeywordSplit = recordKeyword.split(' ').filter(item => item.length > 0)
+        if (recordKeywordSplit.length <= 0) {
+            return recordList
+        }
         return recordList.filter(item => {
-            return item.date.toLowerCase().includes(recordKeyword) ||
-                item.type.toLowerCase().includes(recordKeyword) ||
-                item.remark.toLowerCase().includes(recordKeyword)
+            return Object.values(item).some(value => {
+                return recordKeywordSplit.some(keyword => value && value.includes(keyword));
+            })
         })
     }, [recordList, recordKeyword])
 
@@ -138,7 +142,7 @@ const RecordListPlane = () => {
                 >
                     <input
                         type="text"
-                        placeholder="关键字模糊搜索"
+                        placeholder="多个关键字使用空格分割"
                         value={recordKeyword}
                         onChange={e => setRecordKeyword(e.target.value)}
                     />
