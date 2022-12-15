@@ -40,7 +40,7 @@ const RecordListPlane = () => {
         }
         return recordList.filter(item => {
             return Object.values(item).some(value => {
-                return recordKeywordSplit.some(keyword => value && value.includes(keyword));
+                return recordKeywordSplit.some(keyword => value && value.toString().includes(keyword));
             })
         })
     }, [recordList, recordKeyword])
