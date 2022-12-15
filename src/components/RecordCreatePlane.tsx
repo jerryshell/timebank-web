@@ -35,7 +35,7 @@ const RecordCreatePlane = ({fetchRecordList}: { fetchRecordList: Function }) => 
     }
 
     return (
-        <details open>
+        <details open={!!localStorage.getItem('adminToken')}>
             <summary>创建记录</summary>
             <div>
                 <label htmlFor="adminTokenInput">Admin 令牌（如果你没有 Admin 令牌，则没有创建记录权限）</label>
