@@ -89,6 +89,13 @@ const RecordListPlane = () => {
                             }}
                         />
                     </div>
+                </div>
+                <div
+                    style={{
+                        display: 'flex',
+                        flexWrap: 'wrap'
+                    }}
+                >
                     <button
                         onClick={() => {
                             const now = dayjs()
