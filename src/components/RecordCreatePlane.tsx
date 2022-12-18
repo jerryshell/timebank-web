@@ -38,7 +38,9 @@ const RecordCreatePlane = ({fetchRecordList}: { fetchRecordList: Function }) => 
         <details open={!!localStorage.getItem('adminToken')}>
             <summary>创建记录</summary>
             <div>
-                <label htmlFor="adminTokenInput">Admin 令牌（如果你没有 Admin 令牌，则没有创建记录权限）</label>
+                <label htmlFor="adminTokenInput">
+                    Admin 令牌（如果你没有 Admin 令牌，则没有创建记录权限）
+                </label>
                 <input
                     id="adminTokenInput"
                     type="password"
@@ -47,6 +49,7 @@ const RecordCreatePlane = ({fetchRecordList}: { fetchRecordList: Function }) => 
                         localStorage.setItem('adminToken', e.target.value)
                     }}
                 />
+                <p>⚠️ 请勿侥幸爆破，若多次提交错误的令牌，你的 IP 将会被 Ban</p>
             </div>
             <div
                 style={{
@@ -146,7 +149,11 @@ const RecordCreatePlane = ({fetchRecordList}: { fetchRecordList: Function }) => 
                         }}
                     />
                 </div>
-                {loading ? <LoadingButton/> : <button onClick={handleRecordCreateBtnClick}>创建</button>}
+                {loading ? <LoadingButton/> : (
+                    <button onClick={handleRecordCreateBtnClick}>
+                        创建
+                    </button>
+                )}
             </div>
             <p>若旧记录与新记录重叠，则旧记录将会被新记录覆盖</p>
         </details>
