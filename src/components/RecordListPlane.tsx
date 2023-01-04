@@ -136,6 +136,16 @@ const RecordListPlane = () => {
                         }}
                     >近 30 天
                     </button>
+                    <button
+                        onClick={() => {
+                            const now = dayjs()
+                            setRecordListSearchForm({
+                                dateBegin: now.subtract(180, 'day').format('YYYY-MM-DD'),
+                                dateEnd: now.format('YYYY-MM-DD'),
+                            })
+                        }}
+                    >近 180 天
+                    </button>
                 </div>
             </fieldset>
 
