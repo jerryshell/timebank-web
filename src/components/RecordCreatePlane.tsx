@@ -3,6 +3,8 @@ import {atoms} from '../atoms'
 import recordApi from '../api/recordApi'
 import {useState} from 'react'
 import LoadingButton from './LoadingButton'
+import dayjs from 'dayjs'
+import utils from '../utils'
 
 const timeClipList = [...Array(49).keys()].map(i => {
     return `${~~(i / 2).toString().padStart(2, '0')}:${i % 2 == 0 ? '00' : '30'}`
@@ -149,11 +151,28 @@ const RecordCreatePlane = ({fetchRecordList}: { fetchRecordList: Function }) => 
                         }}
                     />
                 </div>
+            </div>
+            <div
+                style={{
+                    display: 'flex',
+                    flexWrap: 'wrap'
+                }}
+            >
                 {loading ? <LoadingButton/> : (
                     <button onClick={handleRecordCreateBtnClick}>
                         创建
                     </button>
                 )}
+                <button
+                    onClick={() => setNewRecord({
+                        date: dayjs().format('YYYY-MM-DD'),
+                        timeIndexBegin: Math.max(0, utils.nowTimeIndex() - 1),
+                        timeIndexEnd: utils.nowTimeIndex(),
+                        type: '工作',
+                        remark: '',
+                    })}
+                >重置
+                </button>
             </div>
             <p>若旧记录与新记录重叠，则旧记录将会被新记录覆盖</p>
         </details>
