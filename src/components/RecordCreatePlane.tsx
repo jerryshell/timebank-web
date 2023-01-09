@@ -56,7 +56,7 @@ const RecordCreatePlane = ({fetchRecordList}: { fetchRecordList: Function }) => 
             <div
                 style={{
                     display: 'flex',
-                    flexWrap: 'wrap'
+                    flexWrap: 'wrap',
                 }}
             >
                 <div>
@@ -68,7 +68,7 @@ const RecordCreatePlane = ({fetchRecordList}: { fetchRecordList: Function }) => 
                         onChange={e => {
                             setNewRecord({
                                 ...newRecord,
-                                date: e.target.value
+                                date: e.target.value,
                             })
                         }}
                     />
@@ -127,7 +127,7 @@ const RecordCreatePlane = ({fetchRecordList}: { fetchRecordList: Function }) => 
                         onChange={e => {
                             setNewRecord({
                                 ...newRecord,
-                                type: e.target.value
+                                type: e.target.value,
                             })
                         }}
                     >
@@ -155,7 +155,7 @@ const RecordCreatePlane = ({fetchRecordList}: { fetchRecordList: Function }) => 
             <div
                 style={{
                     display: 'flex',
-                    flexWrap: 'wrap'
+                    flexWrap: 'wrap',
                 }}
             >
                 {loading ? <LoadingButton/> : (

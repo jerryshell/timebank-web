@@ -6,5 +6,5 @@ const nowTimeIndex = () => {
 }
 
 export default {
-    nowTimeIndex
+    nowTimeIndex,
 }

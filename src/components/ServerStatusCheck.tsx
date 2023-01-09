@@ -1,23 +1,17 @@
-import {useEffect, useState} from 'react'
 import healthApi from '../api/healthApi'
+import {useQuery} from 'react-query'
 
 const ServerStatusCheck = () => {
-    const [serverStatus, setServerStatus] = useState('👀检查中')
+    const serverStatusQuery = useQuery('serverStatus', healthApi.health)
 
-    useEffect(() => {
-        healthApi.health()
-            .then(response => {
-                console.log('health response', response)
-                setServerStatus('⚡在线')
-            })
-            .catch(e => {
-                console.error('health error', e)
-                setServerStatus('🚫离线')
-            })
-    }, [])
+    if (serverStatusQuery.isLoading) {
+        return (
+            <span>服务器状态：👀检查中</span>
+        )
+    }
 
     return (
-        <span>服务器状态：{serverStatus}</span>
+        <span>服务器状态：{serverStatusQuery.isSuccess ? '⚡在线' : '🚫离线'}</span>
     )
 }
 

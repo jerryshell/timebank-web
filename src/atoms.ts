@@ -24,7 +24,7 @@ export const atoms = {
     }),
     recordListSearchForm: atom({
         key: 'recordListSearchForm',
-        default: initRecordListSearchForm
+        default: initRecordListSearchForm,
     }),
     recordList: atom({
         key: 'recordList',
@@ -33,5 +33,5 @@ export const atoms = {
     recordListLoading: atom({
         key: 'recordListLoading',
         default: false,
-    })
+    }),
 }

@@ -40,7 +40,7 @@ const RecordListPlane = () => {
         }
         return recordList.filter(item => {
             return Object.values(item).some(value => {
-                return recordKeywordSplit.some(keyword => value && value.toString().includes(keyword));
+                return recordKeywordSplit.some(keyword => value && value.toString().includes(keyword))
             })
         })
     }, [recordList, recordKeyword])
@@ -54,7 +54,7 @@ const RecordListPlane = () => {
                 <div
                     style={{
                         display: 'flex',
-                        flexWrap: 'wrap'
+                        flexWrap: 'wrap',
                     }}
                 >
                     <div>
@@ -93,7 +93,7 @@ const RecordListPlane = () => {
                 <div
                     style={{
                         display: 'flex',
-                        flexWrap: 'wrap'
+                        flexWrap: 'wrap',
                     }}
                 >
                     <button
@@ -154,7 +154,7 @@ const RecordListPlane = () => {
                 <div
                     style={{
                         display: 'flex',
-                        flexWrap: 'wrap'
+                        flexWrap: 'wrap',
                     }}
                 >
                     <input

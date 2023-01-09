@@ -43,7 +43,7 @@ const recordChart = () => {
                             <Tooltip
                                 contentStyle={{
                                     backgroundColor: '#202b38',
-                                    borderColor: '#202b38'
+                                    borderColor: '#202b38',
                                 }}
                             />
                             <Area

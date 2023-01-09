@@ -13,7 +13,7 @@ const recordApi = {
     },
     create: (data: Record) => {
         return api.post('/record/create', data)
-    }
+    },
 }
 
 export default recordApi
