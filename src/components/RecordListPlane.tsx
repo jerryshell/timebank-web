@@ -32,6 +32,7 @@ const RecordListPlane = () => {
     const [recordListSearchForm, setRecordListSearchForm] = useRecoilState(atoms.recordListSearchForm)
     const [recordList, setRecordList] = useRecoilState(atoms.recordList)
     const [recordListLoading, setRecordListLoading] = useRecoilState(atoms.recordListLoading)
+    const [newRecord, setNewRecord] = useRecoilState(atoms.newRecord)
     const [recordKeyword, setRecordKeyword] = useState('')
     const recordShowList = useMemo(() => {
         const recordKeywordSplit = recordKeyword.split(' ').filter(item => item.length > 0)
@@ -44,6 +45,13 @@ const RecordListPlane = () => {
             })
         })
     }, [recordList, recordKeyword])
+
+    const handleTimeIndexEndClick = (timeIndexEnd: number) => {
+        setNewRecord({
+            ...newRecord,
+            timeIndexBegin: timeIndexEnd,
+        })
+    }
 
     return (
         <details open>
@@ -182,7 +190,11 @@ const RecordListPlane = () => {
                     <tr key={`${record.date}-${record.timeIndexBegin}-${record.timeIndexEnd}`}>
                         <td>{record.date}</td>
                         <td>{timeIndexToTimeStr(record.timeIndexBegin)}</td>
-                        <td>{timeIndexToTimeStr(record.timeIndexEnd)}</td>
+                        <td>
+                            <button onClick={() => handleTimeIndexEndClick(record.timeIndexEnd)}>
+                                {timeIndexToTimeStr(record.timeIndexEnd)}
+                            </button>
+                        </td>
                         <td>{recordTypeEmojiPrefix(record.type)} {record.type}</td>
                         <td>{record.remark}</td>
                     </tr>
