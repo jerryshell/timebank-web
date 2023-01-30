@@ -53,6 +53,13 @@ const RecordListPlane = () => {
         })
     }
 
+    const handleRemarkClick = (remark: string) => {
+        setNewRecord({
+            ...newRecord,
+            remark,
+        })
+    }
+
     return (
         <details open>
             <summary>记录列表 | 数量：{recordShowList.length}</summary>
@@ -196,7 +203,11 @@ const RecordListPlane = () => {
                             </button>
                         </td>
                         <td>{recordTypeEmojiPrefix(record.type)} {record.type}</td>
-                        <td>{record.remark}</td>
+                        <td>
+                            <button onClick={() => handleRemarkClick(record.remark)}>
+                                {record.remark}
+                            </button>
+                        </td>
                     </tr>
                 ))}
                 </tbody>
