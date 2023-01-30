@@ -53,6 +53,13 @@ const RecordListPlane = () => {
         })
     }
 
+    const handleTypeClick = (type: string) => {
+        setNewRecord({
+            ...newRecord,
+            type,
+        })
+    }
+
     const handleRemarkClick = (remark: string) => {
         setNewRecord({
             ...newRecord,
@@ -202,7 +209,11 @@ const RecordListPlane = () => {
                                 {timeIndexToTimeStr(record.timeIndexEnd)}
                             </button>
                         </td>
-                        <td>{recordTypeEmojiPrefix(record.type)} {record.type}</td>
+                        <td>
+                            <button onClick={() => handleTypeClick(record.type)}>
+                                {recordTypeEmojiPrefix(record.type)} {record.type}
+                            </button>
+                        </td>
                         <td>
                             <button onClick={() => handleRemarkClick(record.remark)}>
                                 {record.remark}
