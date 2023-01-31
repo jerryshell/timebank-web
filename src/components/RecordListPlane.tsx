@@ -202,22 +202,20 @@ const RecordListPlane = () => {
                 <tbody>
                 {recordShowList.map(record => (
                     <tr key={`${record.date}-${record.timeIndexBegin}-${record.timeIndexEnd}`}>
-                        <td>{record.date}</td>
-                        <td>{timeIndexToTimeStr(record.timeIndexBegin)}</td>
                         <td>
-                            <button onClick={() => handleTimeIndexEndClick(record.timeIndexEnd)}>
-                                {timeIndexToTimeStr(record.timeIndexEnd)}
-                            </button>
+                            {record.date}
                         </td>
                         <td>
-                            <button onClick={() => handleTypeClick(record.type)}>
-                                {recordTypeEmojiPrefix(record.type)} {record.type}
-                            </button>
+                            {timeIndexToTimeStr(record.timeIndexBegin)}
                         </td>
-                        <td>
-                            <button onClick={() => handleRemarkClick(record.remark)}>
-                                {record.remark}
-                            </button>
+                        <td onClick={() => handleTimeIndexEndClick(record.timeIndexEnd)}>
+                            {timeIndexToTimeStr(record.timeIndexEnd)}
+                        </td>
+                        <td onClick={() => handleTypeClick(record.type)}>
+                            {recordTypeEmojiPrefix(record.type)} {record.type}
+                        </td>
+                        <td onClick={() => handleRemarkClick(record.remark)}>
+                            {record.remark}
                         </td>
                     </tr>
                 ))}
