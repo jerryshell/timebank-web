@@ -1,4 +1,4 @@
-import axios, {AxiosHeaders} from 'axios'
+import axios from 'axios'
 
 const api = axios.create({
     baseURL: import.meta.env.VITE_API_BASE_URL,
@@ -6,9 +6,7 @@ const api = axios.create({
 
 api.interceptors.request.use(config => {
     const adminToken = localStorage.getItem('adminToken')
-    if (adminToken) {
-        (config.headers as AxiosHeaders).set('admin_token', adminToken)
-    }
+    config.headers.set('admin_token', adminToken)
     return config
 })
 
