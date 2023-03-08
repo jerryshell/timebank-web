@@ -25,7 +25,9 @@ const RecordCreatePlane = ({fetchRecordList}: { fetchRecordList: Function }) => 
         recordApi.create(newRecord)
             .then(response => {
                 console.log('record create response', response)
-                fetchRecordList()
+                setTimeout(() => {
+                    fetchRecordList()
+                }, 0)
             })
             .catch(e => {
                 console.error(e)
