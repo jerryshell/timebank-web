@@ -9,9 +9,10 @@ const recordChart = () => {
     [...new Set(recordList.map(item => item.date))]
       .map(date => {
         const recordListByDate = recordList.filter(recordListItem => recordListItem.date === date)
+        const workCount = recordListByDate.filter(recordListItem => recordListItem.type === '工作').length
         return {
           date,
-          workCount: recordListByDate.filter(recordListItem => recordListItem.type === '工作').length,
+          workCount: `${workCount}`,
           readCount: recordListByDate.filter(recordListItem => recordListItem.type === '充电').length,
           lazyCount: recordListByDate.filter(recordListItem => recordListItem.type === '摸鱼').length,
           sleepCount: recordListByDate.filter(recordListItem => recordListItem.type === '休息').length,
@@ -45,6 +46,7 @@ const recordChart = () => {
                   backgroundColor: '#202b38',
                   borderColor: '#202b38',
                 }}
+                formatter={(value: number, name, props) => `${value.toString().padStart(2, '0')} ${(value / 48 * 100).toFixed(0).toString().padStart(2, '0')}%`}
               />
               <Area
                 type="monotone"
