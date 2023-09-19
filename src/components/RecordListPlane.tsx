@@ -5,9 +5,8 @@ import { atoms } from "../atoms";
 import LoadingSvg from "./LoadingSvg";
 
 const timeIndexToTimeStr = (timeIndex: number) => {
-  return `${(~~(timeIndex / 2)).toString().padStart(2, "0")}:${
-    timeIndex % 2 === 0 ? "00" : "30"
-  }`;
+  return `${(~~(timeIndex / 2)).toString().padStart(2, "0")}:${timeIndex % 2 === 0 ? "00" : "30"
+    }`;
 };
 
 const recordTypeEmojiPrefix = (recordType: string) => {
@@ -76,6 +75,13 @@ const RecordListPlane = () => {
       remark,
     });
   };
+
+  const handleRecordDateClick = (date: string) => {
+    setNewRecord({
+      ...newRecord,
+      date,
+    });
+  }
 
   return (
     <details open>
@@ -237,7 +243,7 @@ const RecordListPlane = () => {
             <tr
               key={`${record.date}-${record.timeIndexBegin}-${record.timeIndexEnd}`}
             >
-              <td>{record.date}</td>
+              <td onClick={() => handleRecordDateClick(record.date)}>{record.date}</td>
               <td>{timeIndexToTimeStr(record.timeIndexBegin)}</td>
               <td onClick={() => handleTimeIndexEndClick(record.timeIndexEnd)}>
                 {timeIndexToTimeStr(record.timeIndexEnd)}
