@@ -1,11 +1,11 @@
-import LoadingSvg from './LoadingSvg'
+import LoadingSvg from "./LoadingSvg";
 
 const LoadingButton = () => {
   return (
     <button disabled>
       <LoadingSvg />
     </button>
-  )
-}
+  );
+};
 
-export default LoadingButton
+export default LoadingButton;

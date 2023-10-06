@@ -5,8 +5,9 @@ import { atoms } from "../atoms";
 import LoadingSvg from "./LoadingSvg";
 
 const timeIndexToTimeStr = (timeIndex: number) => {
-  return `${(~~(timeIndex / 2)).toString().padStart(2, "0")}:${timeIndex % 2 === 0 ? "00" : "30"
-    }`;
+  return `${(~~(timeIndex / 2)).toString().padStart(2, "0")}:${
+    timeIndex % 2 === 0 ? "00" : "30"
+  }`;
 };
 
 const recordTypeEmojiPrefix = (recordType: string) => {
@@ -31,11 +32,11 @@ const recordTypeEmojiPrefix = (recordType: string) => {
 
 const RecordListPlane = () => {
   const [recordListSearchForm, setRecordListSearchForm] = useRecoilState(
-    atoms.recordListSearchForm
+    atoms.recordListSearchForm,
   );
   const [recordList, setRecordList] = useRecoilState(atoms.recordList);
   const [recordListLoading, setRecordListLoading] = useRecoilState(
-    atoms.recordListLoading
+    atoms.recordListLoading,
   );
   const [newRecord, setNewRecord] = useRecoilState(atoms.newRecord);
   const [recordKeyword, setRecordKeyword] = useState("");
@@ -49,7 +50,7 @@ const RecordListPlane = () => {
     return recordList.filter((item) => {
       return Object.values(item).some((value) => {
         return recordKeywordSplit.some(
-          (keyword) => value && value.toString().includes(keyword)
+          (keyword) => value && value.toString().includes(keyword),
         );
       });
     });
@@ -81,7 +82,7 @@ const RecordListPlane = () => {
       ...newRecord,
       date,
     });
-  }
+  };
 
   return (
     <details open>
@@ -243,7 +244,9 @@ const RecordListPlane = () => {
             <tr
               key={`${record.date}-${record.timeIndexBegin}-${record.timeIndexEnd}`}
             >
-              <td onClick={() => handleRecordDateClick(record.date)}>{record.date}</td>
+              <td onClick={() => handleRecordDateClick(record.date)}>
+                {record.date}
+              </td>
               <td>{timeIndexToTimeStr(record.timeIndexBegin)}</td>
               <td onClick={() => handleTimeIndexEndClick(record.timeIndexEnd)}>
                 {timeIndexToTimeStr(record.timeIndexEnd)}

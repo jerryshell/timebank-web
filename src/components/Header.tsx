@@ -1,4 +1,4 @@
-import ServerStatusCheck from './ServerStatusCheck'
+import ServerStatusCheck from "./ServerStatusCheck";
 
 export const Header = () => {
   return (
@@ -6,5 +6,5 @@ export const Header = () => {
       <h1>Timebank</h1>
       <ServerStatusCheck />
     </>
-  )
-}
+  );
+};

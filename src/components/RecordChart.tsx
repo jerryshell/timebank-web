@@ -1,29 +1,48 @@
-import { useMemo } from 'react'
-import { Area, AreaChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts'
-import { useRecoilState } from 'recoil'
-import { atoms } from '../atoms'
+import { useMemo } from "react";
+import {
+  Area,
+  AreaChart,
+  ResponsiveContainer,
+  Tooltip,
+  XAxis,
+  YAxis,
+} from "recharts";
+import { useRecoilState } from "recoil";
+import { atoms } from "../atoms";
 
 const recordChart = () => {
-  const [recordList, setRecordList] = useRecoilState(atoms.recordList)
-  const recordStats = useMemo(() => (
-    [...new Set(recordList.map(item => item.date))]
-      .map(date => {
-        const recordListByDate = recordList.filter(recordListItem => recordListItem.date === date)
-        const workCount = recordListByDate.filter(recordListItem => recordListItem.type === '工作').length
-        return {
-          date,
-          workCount: `${workCount}`,
-          readCount: recordListByDate.filter(recordListItem => recordListItem.type === '充电').length,
-          lazyCount: recordListByDate.filter(recordListItem => recordListItem.type === '摸鱼').length,
-          sleepCount: recordListByDate.filter(recordListItem => recordListItem.type === '休息').length,
-        }
-      })
-      .sort((a, b) => a.date.localeCompare(b.date))
-  ), [recordList])
+  const [recordList, setRecordList] = useRecoilState(atoms.recordList);
+  const recordStats = useMemo(
+    () =>
+      [...new Set(recordList.map((item) => item.date))]
+        .map((date) => {
+          const recordListByDate = recordList.filter(
+            (recordListItem) => recordListItem.date === date,
+          );
+          const workCount = recordListByDate.filter(
+            (recordListItem) => recordListItem.type === "工作",
+          ).length;
+          return {
+            date,
+            workCount: `${workCount}`,
+            readCount: recordListByDate.filter(
+              (recordListItem) => recordListItem.type === "充电",
+            ).length,
+            lazyCount: recordListByDate.filter(
+              (recordListItem) => recordListItem.type === "摸鱼",
+            ).length,
+            sleepCount: recordListByDate.filter(
+              (recordListItem) => recordListItem.type === "休息",
+            ).length,
+          };
+        })
+        .sort((a, b) => a.date.localeCompare(b.date)),
+    [recordList],
+  );
 
   return (
     <>
-      {recordStats.length > 1 ?
+      {recordStats.length > 1 ? (
         <details open>
           <summary>统计图表</summary>
           <ResponsiveContainer height={200}>
@@ -32,21 +51,23 @@ const recordChart = () => {
               // height={200}
               data={recordStats}
             >
-              <XAxis
-                hide={true}
-                dataKey="date"
-              />
+              <XAxis hide={true} dataKey="date" />
               <YAxis
                 hide={true}
                 type="number"
-                domain={['dataMin', 'dataMax']}
+                domain={["dataMin", "dataMax"]}
               />
               <Tooltip
                 contentStyle={{
-                  backgroundColor: '#202b38',
-                  borderColor: '#202b38',
+                  backgroundColor: "#202b38",
+                  borderColor: "#202b38",
                 }}
-                formatter={(value: number, name, props) => `${value.toString().padStart(2, '0')} ${(value / 48 * 100).toFixed(0).toString().padStart(2, '0')}%`}
+                formatter={(value: number, name, props) =>
+                  `${value.toString().padStart(2, "0")} ${((value / 48) * 100)
+                    .toFixed(0)
+                    .toString()
+                    .padStart(2, "0")}%`
+                }
               />
               <Area
                 type="monotone"
@@ -83,10 +104,11 @@ const recordChart = () => {
             </AreaChart>
           </ResponsiveContainer>
         </details>
-        : ''
-      }
+      ) : (
+        ""
+      )}
     </>
-  )
-}
+  );
+};
 
-export default recordChart
+export default recordChart;

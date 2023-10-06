@@ -1,37 +1,37 @@
-import dayjs from 'dayjs'
-import { atom } from 'recoil'
-import Record from './interfaces/Record'
-import RecordListSearchForm from './interfaces/RecordListSearchForm'
-import utils from './utils'
+import dayjs from "dayjs";
+import { atom } from "recoil";
+import Record from "./interfaces/Record";
+import RecordListSearchForm from "./interfaces/RecordListSearchForm";
+import utils from "./utils";
 
 const initNewRecord = {
-  date: dayjs().format('YYYY-MM-DD'),
+  date: dayjs().format("YYYY-MM-DD"),
   timeIndexBegin: Math.max(0, utils.nowTimeIndex() - 1),
   timeIndexEnd: utils.nowTimeIndex(),
-  type: '工作',
-  remark: '',
-} as Record
+  type: "工作",
+  remark: "",
+} as Record;
 
 const initRecordListSearchForm = {
-  dateBegin: dayjs().subtract(30, 'day').format('YYYY-MM-DD'),
-  dateEnd: dayjs().format('YYYY-MM-DD'),
-} as RecordListSearchForm
+  dateBegin: dayjs().subtract(30, "day").format("YYYY-MM-DD"),
+  dateEnd: dayjs().format("YYYY-MM-DD"),
+} as RecordListSearchForm;
 
 export const atoms = {
   newRecord: atom({
-    key: 'newRecord',
+    key: "newRecord",
     default: initNewRecord,
   }),
   recordListSearchForm: atom({
-    key: 'recordListSearchForm',
+    key: "recordListSearchForm",
     default: initRecordListSearchForm,
   }),
   recordList: atom({
-    key: 'recordList',
+    key: "recordList",
     default: [] as Record[],
   }),
   recordListLoading: atom({
-    key: 'recordListLoading',
+    key: "recordListLoading",
     default: false,
   }),
-}
+};
