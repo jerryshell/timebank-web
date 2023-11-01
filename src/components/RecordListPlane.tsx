@@ -95,12 +95,12 @@ const RecordListPlane = ({
       .then((response) => {
         console.log("record delete response", response);
         // fetchRecordList();
+        setRecordList(recordList.filter((item) => `${item.date}_${item.timeIndexEnd}` !== `${record.date}_${record.timeIndexEnd}`));
       })
       .catch((e) => {
         console.error(e);
         alert(e.response.data.message);
       });
-    setRecordList(recordList.filter((item) => `${item.date}_${item.timeIndexEnd}` !== `${record.date}_${record.timeIndexEnd}`));
   }
 
   return (
