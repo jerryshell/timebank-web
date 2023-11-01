@@ -45,7 +45,7 @@ const App = () => {
       <Header />
       <RecordCreatePlane fetchRecordList={fetchRecordList} />
       <RecordChart />
-      <RecordListPlane />
+      <RecordListPlane fetchRecordList={fetchRecordList} />
       <Footer />
     </>
   );

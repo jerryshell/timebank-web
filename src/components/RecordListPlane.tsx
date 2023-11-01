@@ -3,11 +3,12 @@ import { useMemo, useState } from "react";
 import { useRecoilState } from "recoil";
 import { atoms } from "../atoms";
 import LoadingSvg from "./LoadingSvg";
+import recordApi from "../api/recordApi";
+import Record from "../interfaces/Record";
 
 const timeIndexToTimeStr = (timeIndex: number) => {
-  return `${(~~(timeIndex / 2)).toString().padStart(2, "0")}:${
-    timeIndex % 2 === 0 ? "00" : "30"
-  }`;
+  return `${(~~(timeIndex / 2)).toString().padStart(2, "0")}:${timeIndex % 2 === 0 ? "00" : "30"
+    }`;
 };
 
 const recordTypeEmojiPrefix = (recordType: string) => {
@@ -30,7 +31,11 @@ const recordTypeEmojiPrefix = (recordType: string) => {
   }
 };
 
-const RecordListPlane = () => {
+const RecordListPlane = ({
+  fetchRecordList,
+}: {
+  fetchRecordList: Function;
+}) => {
   const [recordListSearchForm, setRecordListSearchForm] = useRecoilState(
     atoms.recordListSearchForm,
   );
@@ -83,6 +88,20 @@ const RecordListPlane = () => {
       date,
     });
   };
+
+  const handleDeleteClick = (record: Record) => {
+    recordApi
+      .delete(record)
+      .then((response) => {
+        console.log("record delete response", response);
+        // fetchRecordList();
+      })
+      .catch((e) => {
+        console.error(e);
+        alert(e.response.data.message);
+      });
+    setRecordList(recordList.filter((item) => `${item.date}_${item.timeIndexEnd}` !== `${record.date}_${record.timeIndexEnd}`));
+  }
 
   return (
     <details open>
@@ -237,6 +256,7 @@ const RecordListPlane = () => {
             <th>结束时间</th>
             <th>类型</th>
             <th>备注</th>
+            <th>删除</th>
           </tr>
         </thead>
         <tbody>
@@ -256,6 +276,9 @@ const RecordListPlane = () => {
               </td>
               <td onClick={() => handleRemarkClick(record.remark)}>
                 {record.remark}
+              </td>
+              <td>
+                <button onClick={() => handleDeleteClick(record)}>删除</button>
               </td>
             </tr>
           ))}

@@ -11,6 +11,9 @@ const recordApi = {
   create: (data: Record) => {
     return api.post("/record/create", data);
   },
+  delete: (data: Record) => {
+    return api.post("/record/delete", data);
+  }
 };
 
 export default recordApi;
